@@ -7,7 +7,7 @@ Then open PowerShell and run
     composer install
     php artisan key:generate
     php artisan migrate
+    php artisan storage:link
     php artisan serve
 
 \*If ask to create database when migrating, type `yes`
-
