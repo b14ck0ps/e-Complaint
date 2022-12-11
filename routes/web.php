@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\ComplainsController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,9 +30,7 @@ Route::group(['middleware' => ['guest']], function () {
 
 // * AUTH ROUTES for Victim
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/home', function () {
-        return view('VictimDashboards.home');
-    });
+    Route::get('/home', [ProfileController::class, 'VictimProfile'])->name('home');
 
     // * COMPLAIN ROUTE
     Route::get('/complain', [ComplainsController::class, 'index'])->name('complaint');
