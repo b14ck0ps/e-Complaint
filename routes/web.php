@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegistrationController;
+use App\Http\Controllers\ComplainsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,9 +33,11 @@ Route::group(['middleware' => ['auth']], function () {
         return view('VictimDashboards.home');
     });
 
-    Route::get('/complain', function () {
-        return view('VictimDashboards.complainbox');
-    });
+    // * COMPLAIN ROUTE
+    Route::get('/complain', [ComplainsController::class, 'index'])->name('complaint');
+    Route::post('/complain', [ComplainsController::class, 'store']);
+
+    // * LOGOUT ROUTE
     Route::get('/logout', function () {
         auth()->logout();
         return redirect()->route('login');
