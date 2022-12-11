@@ -2,15 +2,21 @@
 @section('content')
     <div class="row" style="margin-top: 20vh">
         <div class="col-3 m-auto border rounded p-5">
-            <form>
-                <h4 class="text-center">Welcome</h4>
+            <h4 class="text-center">Welcome</h4>
+            @if (session('status'))
+                <div class=" text-center alert alert-danger">
+                    {{ session('status') }}
+                </div>
+            @endif
+            <form method="POST" action="/login">
+                @csrf
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">E-mail</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <label class="form-label">E-mail</label>
+                    <input type="email" class="form-control" aria-describedby="emailHelp" name="email">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password">
                 </div>
                 <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">

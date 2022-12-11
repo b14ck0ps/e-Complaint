@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegistrationController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,18 +15,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', function () {
-    return view('Auth.Login');
-})->name('login');
+//grouping routes midleware
+Route::group(['middleware' => ['guest']], function () {
+    //! login route
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
+    Route::post('/login', [LoginController::class, 'login']);
 
-//! registration route
-Route::get('/register', [RegistrationController::class, 'index']);
-Route::post('/register', [RegistrationController::class, 'store']);
-
-Route::get('/home', function () {
-    return view('VictimDashboards.home');
+    //! registration route
+    Route::get('/register', [RegistrationController::class, 'index'])->name('register');
+    Route::post('/register', [RegistrationController::class, 'store']);
 });
 
-Route::get('/complain', function () {
-    return view('VictimDashboards.complainbox');
+// * AUTH ROUTES for Victim
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/home', function () {
+        return view('VictimDashboards.home');
+    });
+
+    Route::get('/complain', function () {
+        return view('VictimDashboards.complainbox');
+    });
+    Route::get('/logout', function () {
+        auth()->logout();
+        return redirect()->route('login');
+    });
 });
