@@ -11,7 +11,11 @@ class ComplainsController extends Controller
     {
         return view('VictimDashboards.complainbox');
     }
-
+    public function details($id)
+    {
+        $complain = Complains::find($id);
+        return view('VictimDashboards.complainDetails', compact('complain'));
+    }
     public function store(Request $request)
     {
         $this->validate($request, [

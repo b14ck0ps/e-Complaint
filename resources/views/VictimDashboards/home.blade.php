@@ -41,7 +41,8 @@
                                 @foreach ($complains as $complain)
                                     <tr>
                                         <th scope="row">{{ $complain->id }}</th>
-                                        <td>{{ $complain->complaint_type }}</td>
+                                        <td><a href="/complain/{{ $complain->id }}">{{ $complain->complaint_type }}</a>
+                                        </td>
                                         <td>
                                             <span class="badge-pill badge-secondary">{{ $complain->status }}</span>
                                         </td>

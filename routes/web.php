@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     // * COMPLAIN ROUTE
     Route::get('/complain', [ComplainsController::class, 'index'])->name('complaint');
+    Route::get('/complain/{id}', [ComplainsController::class, 'details'])->name('complaint.details');
     Route::post('/complain', [ComplainsController::class, 'store']);
 
     // * LOGOUT ROUTE
