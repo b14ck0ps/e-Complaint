@@ -2,7 +2,7 @@
 @section('content')
     <div class="row mt-1">
         <div class="col-3 m-auto border rounded p-5">
-            <form method="POST" action="/register">
+            <form method="POST" action="/register" enctype="multipart/form-data">
                 @csrf
                 <h4 class="text-center">Registration</h4>
                 <div class="mb-3">
@@ -63,6 +63,15 @@
                 </div>
                 <div class="mb-3 form-check">
                 </div>
+
+                <div class="mb-3">
+                    <label class="form-label ">Profile Picture</label>
+                    <input type="file" class="form-control" name="profile_pic">
+                    @error('profile_pic')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
                 <div class="d-flex align-items-center">
                     <button type="submit" class="btn btn-primary">Register</button>
                     <a style="margin-left: 130px" href="/login">Already has an Account?</a>

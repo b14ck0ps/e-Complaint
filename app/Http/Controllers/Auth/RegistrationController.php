@@ -23,6 +23,7 @@ class RegistrationController extends Controller
             'address' => 'required|max:255',
             'nid' => 'required|numeric',
             'password' => 'required|confirmed',
+            'profile_pic' => 'image|nullable|max:1999',
         ]);
 
         User::create([
@@ -33,6 +34,7 @@ class RegistrationController extends Controller
             'address' => $request->address,
             'nid' => $request->nid,
             'password' => bcrypt($request->password),
+            'profile_pic' => isset($request->profile_pic) ? $request->profile_pic->store('profile_pics', 'public') : null
         ]);
 
         return redirect()->route('login');

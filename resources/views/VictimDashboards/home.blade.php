@@ -4,7 +4,7 @@
         <div class="d-flex">
             {{-- left side --}}
             <div class="card mr-2" style="width: 25rem;">
-                <img class="p-5 rounded-circle" src="https://via.placeholder.com/500" alt="Card image cap">
+                <img class="p-5 rounded-circle" src={{ asset('storage/' . $user->profile_pic) }} alt="Card image cap">
                 <div class="card-body">
                     <p class="card-text">
                     <h4> {{ $user->name }} </h4>
