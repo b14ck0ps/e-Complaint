@@ -8,12 +8,17 @@
             </p>
         </div>
         <div class="card-body">
-            <p class="card-text">
-            <div>
-                <p> <strong>Created:</strong> {{ $complain->created_at }}</p>
-                <p><strong>Details: </strong>{{ $complain->description }}</p>
+            <div class="d-flex justify-content-between">
+                <div>
+                    <p> <strong>Created:</strong> {{ $complain->created_at }}</p>
+                    <p><strong>Details: </strong>{{ $complain->description }}</p>
+                </div>
+                <div>
+                    <img height="400px" src={{ asset('storage/' . $complain->attachment1) }} alt="">
+                    <p class="mt-3 text-center"><strong>Attachment</strong></p>
+                </div>
             </div>
-            </p>
+
             <a href="/home">Back</a>
         </div>
     </div>

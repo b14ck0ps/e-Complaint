@@ -21,7 +21,7 @@ class ComplainsController extends Controller
         $this->validate($request, [
             'complaint_type' => 'required',
             'description' => 'required',
-            'attachment1' => 'jpg,png,jpeg | max:2048 | mimes:jpg,png,jpeg',
+            'attachment1' => 'image| max:2048 | mimes:jpg,png,jpeg',
         ]);
 
         Complains::create([
@@ -29,7 +29,7 @@ class ComplainsController extends Controller
             'description' => $request->description,
             'anonymous' => isset($request->anonymous) ? 1 : 0,
             'user_id' => auth()->user()->id,
-            'attachment1' => $request->attachment1,
+            'attachment1' =>  isset($request->attachment1) ? $request->attachment1->store('complainAttachments', 'public') : null
         ]);
 
         return redirect()->to('/home')->with('status', 'Complaint has been submitted successfully');
