@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegistrationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login', function () {
     return view('Auth.Login');
-});
+})->name('login');
 
-Route::get('/register', function () {
-    return view('Auth.Registration');
-});
+//! registration route
+Route::get('/register', [RegistrationController::class, 'index']);
+Route::post('/register', [RegistrationController::class, 'store']);
 
 Route::get('/home', function () {
     return view('VictimDashboards.home');
