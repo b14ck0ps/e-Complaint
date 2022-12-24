@@ -34,7 +34,7 @@
                             </div>
                         @endforeach
                         @if ($comments->hasPages())
-                            <div class="pagination-wrapper">
+                            <div class="pagination-wrapper d-flex justify-content-center mt-3">
                                 {{ $comments->links() }}
                             </div>
                         @endif

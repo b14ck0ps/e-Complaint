@@ -57,6 +57,11 @@
                                         <td>{{ date('M j, Y, g:i a', strtotime($complain->created_at)) }}</td>
                                     </tr>
                                 @endforeach
+                                @if ($complains->hasPages())
+                                    <div class="pagination-wrapper d-flex justify-content-center mt-3">
+                                        {{ $complains->links() }}
+                                    </div>
+                                @endif
                             </tbody>
                         </table>
                     </div>

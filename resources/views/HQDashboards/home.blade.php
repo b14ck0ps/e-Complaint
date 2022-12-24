@@ -57,6 +57,11 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        @if ($users->hasPages())
+                            <div class="pagination-wrapper d-flex justify-content-center mt-3">
+                                {{ $users->links() }}
+                            </div>
+                        @endif
                     </div>
                     </p>
                 </div>
