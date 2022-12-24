@@ -10,7 +10,7 @@
         <div class="card-body">
             <div class="d-flex justify-content-between">
                 <div>
-                    <p> <strong>Created:</strong> {{ $complain->created_at }}</p>
+                    <p> <strong>Created:</strong> {{ date('F j, Y, g:i a', strtotime($complain->created_at)) }}</p>
                     <p><strong>Details: </strong>{{ $complain->description }}</p>
                 </div>
                 <div>

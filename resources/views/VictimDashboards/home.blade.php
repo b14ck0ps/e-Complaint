@@ -51,7 +51,7 @@
                                             <span class="badge-pill badge-secondary">{{ $complain->status }}</span>
                                         </td>
                                         <td>{{ $complain->handle_by ?? '...' }}</td>
-                                        <td>{{ $complain->created_at }}</td>
+                                        <td>{{ date('M j, Y, g:i a', strtotime($complain->created_at)) }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
