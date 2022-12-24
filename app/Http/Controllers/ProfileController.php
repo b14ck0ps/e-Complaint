@@ -18,14 +18,14 @@ class ProfileController extends Controller
     public function HQProfile()
     {
         $user = User::find(auth()->user()->id);
-        $complains = Complains::all();
-        return view('HQDashboards.home', compact('user', 'complains'));
-    }
-    public function allUsers()
-    {
         $users = User::all();
+        return view('HQDashboards.home', compact('user', 'users'));
+    }
+    public function allComplains()
+    {
         $user  = User::find(auth()->user()->id);
-        return view('HQDashboards.allUsers', compact('users', 'user'));
+        $complains = Complains::all();
+        return view('HQDashboards.allComplains', compact('user', 'complains'));
     }
     //cyber police profile
     public function C_PoliceProfile()
@@ -33,5 +33,13 @@ class ProfileController extends Controller
         $user = User::find(auth()->user()->id);
         $complains = Complains::all();
         return view('CyberPoliceDashboards.home', compact('user', 'complains'));
+    }
+
+    //police profile
+    public function PoliceProfile()
+    {
+        $user = User::find(auth()->user()->id);
+        $complains = Complains::where('handle_by', 'Police Station')->get();
+        return view('PoliceHQ.home', compact('user', 'complains'));
     }
 }

@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
     <div class="d-flex justify-content-center mb-3" style="margin-top: 70px">
-        <div class="card card-title px-5 py-2 h2">POLICE HQ</div>
+        <div class="card card-title px-5 py-2 h2">Police HQ Dashboard</div>
     </div>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center ">
         <div class="d-flex">
             {{-- left side --}}
             <div class="card mr-2" style="width: 25rem;">
@@ -30,10 +30,7 @@
             </div>
             {{-- right side --}}
             <div class="card" style="width: 60rem">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h4 class="p-4">All Users</h4>
-                    <a class="btn btn-primary mr-5 " href="/register/newuser" style="max-height: 50px">NEW</a>
-                </div>
+                <h4 class="p-4">All Complaints</h4>
                 <div class="card-body">
                     <p class="card-text">
                     <div class="table-responsive">
@@ -41,18 +38,25 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Type</th>
-                                    <th scope="col">Account Created</th>
+                                    <th scope="col">Complaint type</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Handle By</th>
+                                    <th scope="col">Assign TO</th>
+                                    <th scope="col">Date</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $user)
+                                @foreach ($complains as $complain)
                                     <tr>
-                                        <th scope="row">{{ $user->id }}</th>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->type }}</td>
-                                        <td>{{ $user->created_at }}</td>
+                                        <th scope="row">{{ $complain->id }}</th>
+                                        <td><a href="/complain/{{ $complain->id }}">{{ $complain->complaint_type }}</a>
+                                        </td>
+                                        <td>
+                                            <span class="badge-pill badge-secondary">{{ $complain->status }}</span>
+                                        </td>
+                                        <td>{{ $complain->handle_by ?? '...' }}</td>
+                                        <td>{{ $complain->assign_to ?? '...' }}</td>
+                                        <td>{{ date('M j, Y, g:i a', strtotime($complain->created_at)) }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

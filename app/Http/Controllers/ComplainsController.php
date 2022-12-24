@@ -45,4 +45,15 @@ class ComplainsController extends Controller
         $complain->save();
         return redirect()->route('C_PoliceProfile')->with('status', 'Complain has been sent');
     }
+    public function assignTo(Request $request)
+    {
+        $this->validate($request, [
+            'assign_to' => 'required'
+        ]);
+        $complain = Complains::find($request->id);
+        $complain->assign_to = $request->assign_to;
+        $complain->status = 'Assigned';
+        $complain->save();
+        return redirect()->route('PoliceHome')->with('status', 'Complain has Assigned');
+    }
 }

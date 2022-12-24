@@ -39,6 +39,22 @@
                     </form>
                 </div>
             @endif
+            @if (auth()->user()->type == 'POLICE')
+                <div style="max-width: 300px">
+                    <form action="/assignTask" method="POST">
+                        @csrf
+                        <p>Assign Task TO</p>
+                        <div class="form-group d-flex justify-content-center align-items-center">
+                            <select class="form-control" name="assign_to">
+                                <option value="Quick Reactoin Force">Quick Reactoin Force</option>
+                                <option value="Quick Reaction Team">Quick Reaction Team</option>
+                            </select>
+                            <input type="hidden" name="id" value="{{ $complain->id }}">
+                            <button type="submit" class="btn btn-primary ml-2">Assign</button>
+                        </div>
+                    </form>
+                </div>
+            @endif
             <a href="{{ url()->previous() }}">Back</a>
         </div>
     </div>

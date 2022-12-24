@@ -50,7 +50,7 @@ Route::group(['middleware' => ['auth']], function () {
 // * AUTH ROUTES for HQ
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/hq/home', [ProfileController::class, 'HQProfile'])->name('HQProfile');
-    Route::get('/alluser', [ProfileController::class, 'allUsers'])->name('allusers');
+    Route::get('/allcomplains', [ProfileController::class, 'allComplains'])->name('allcomplains');
     Route::get('/register/newuser', [HQRegController::class, 'regNewUser'])->name('new.user');
     Route::post('/register/newuser', [HQRegController::class, 'newUser']);
 });
@@ -59,4 +59,10 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 Route::group(['middleware' => ['auth',/* 'cyberpolice'*/]], function () {
     Route::get('/cyberpolice/home', [ProfileController::class, 'C_PoliceProfile'])->name('C_PoliceProfile');
     Route::post('/sendcomplain', [ComplainsController::class, 'sendComplain'])->name('send.complain');
+});
+
+// * AUTH ROUTES for Police
+Route::group(['middleware' => ['auth',/* 'cyberpolice'*/]], function () {
+    Route::get('/police/home', [ProfileController::class, 'PoliceProfile'])->name('PoliceHome');
+    Route::post('/assignTask', [ComplainsController::class, 'assignTo']);
 });
