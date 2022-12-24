@@ -4,7 +4,11 @@
         <div class="d-flex">
             {{-- left side --}}
             <div class="card mr-2" style="width: 25rem;">
-                <img class="p-5 rounded-circle" src={{ asset('storage/' . $user->profile_pic) }} alt="Card image cap">
+                <img class="p-5 rounded-circle"
+                    @if ($user->profile_pic == null) src={{ asset('img/default_avater.jpg') }}
+                @else
+                src={{ asset('storage/' . $user->profile_pic) }} @endif
+                    alt="Profile Picture">
                 <div class="card-body">
                     <p class="card-text">
                     <h4> {{ $user->name }} </h4>
