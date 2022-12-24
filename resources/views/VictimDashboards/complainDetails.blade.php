@@ -55,6 +55,23 @@
                     </form>
                 </div>
             @endif
+            @if (auth()->user()->type == 'HQ')
+                <div style="max-width: 300px">
+                    <form action="/assignAgent" method="POST">
+                        @csrf
+                        <p>Assign Special Agent</p>
+                        <div class="form-group d-flex justify-content-center align-items-center">
+                            <select class="form-control" name="investigator">
+                                @foreach ($agents as $agent)
+                                    <option value="{{ $agent->name }}">{{ $agent->name }}</option>
+                                @endforeach
+                            </select>
+                            <input type="hidden" name="id" value="{{ $complain->id }}">
+                            <button type="submit" class="btn btn-primary ml-2">Assign</button>
+                        </div>
+                    </form>
+                </div>
+            @endif
             <a href="{{ url()->previous() }}">Back</a>
         </div>
     </div>

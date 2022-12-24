@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Complains;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ComplainsController extends Controller
@@ -14,6 +15,10 @@ class ComplainsController extends Controller
     public function details($id)
     {
         $complain = Complains::find($id);
+        if (auth()->user()->type == 'HQ') {
+            $agents = User::where('type', 'SPECIAL_AGENT')->get();
+            return view('VictimDashboards.complainDetails', compact('complain', 'agents'));
+        }
         return view('VictimDashboards.complainDetails', compact('complain'));
     }
     public function store(Request $request)
@@ -54,6 +59,17 @@ class ComplainsController extends Controller
         $complain->assign_to = $request->assign_to;
         $complain->status = 'Assigned';
         $complain->save();
-        return redirect()->route('PoliceHome')->with('status', 'Complain has Assigned');
+        return redirect()->route('PoliceHome')->with('status', 'Complain is processing');
+    }
+    public function assignAgent(Request $request)
+    {
+        $this->validate($request, [
+            'investigator' => 'required'
+        ]);
+        $complain = Complains::find($request->id);
+        $complain->investigator = $request->investigator;
+        $complain->status = 'Investigating';
+        $complain->save();
+        return redirect()->route('HQProfile')->with('status', 'Complain has Assigned');
     }
 }
