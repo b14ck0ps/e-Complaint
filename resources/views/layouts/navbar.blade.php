@@ -5,6 +5,7 @@
             @if (Auth::user()->type == 'ADMIN')
                 <a class="mr-5" href="/hq/home">Home</a>
                 <a class="mr-5" href="/register/newuser">Add New User</a>
+                <a class="mr-5" href="/alluser">All Users</a>
             @endif
             @if (Auth::user()->type == 'VICTIM')
                 <a class="mr-5" href="/home">Home</a>

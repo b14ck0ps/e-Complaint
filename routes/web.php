@@ -50,6 +50,7 @@ Route::group(['middleware' => ['auth']], function () {
 // * AUTH ROUTES for HQ
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/hq/home', [ProfileController::class, 'HQProfile'])->name('HQProfile');
+    Route::get('/alluser', [ProfileController::class, 'allUsers'])->name('allusers');
     Route::get('/register/newuser', [HQRegController::class, 'regNewUser'])->name('new.user');
     Route::post('/register/newuser', [HQRegController::class, 'newUser']);
 });
