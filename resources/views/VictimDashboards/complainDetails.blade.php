@@ -31,7 +31,7 @@
                         <div class="form-group d-flex justify-content-center align-items-center">
                             <select class="form-control" name="handle_by">
                                 <option value="Police Station">Police Station</option>
-                                <option value="Cyber Police">Cyber Police</option>
+                                <option value="Police HQ">Police HQ</option>
                             </select>
                             <input type="hidden" name="id" value="{{ $complain->id }}">
                             <button type="submit" class="btn btn-primary ml-2">Send</button>

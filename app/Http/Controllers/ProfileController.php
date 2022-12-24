@@ -24,7 +24,7 @@ class ProfileController extends Controller
     public function allComplains()
     {
         $user  = User::find(auth()->user()->id);
-        $complains = Complains::all();
+        $complains = Complains::where('handle_by', 'Police HQ')->get();
         return view('HQDashboards.allComplains', compact('user', 'complains'));
     }
     //cyber police profile
