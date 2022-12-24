@@ -42,6 +42,34 @@ class HQRegController extends Controller
 
     public function regNewUser()
     {
-        return view('Auth.Registration');
+        return view('Auth.NewStuffRegistration');
+    }
+    public function newUser(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'type' => 'required',
+            'phone' => 'required|numeric',
+            'dob' => 'required|date',
+            'address' => 'required|max:255',
+            'nid' => 'required|numeric',
+            'password' => 'required|confirmed',
+            'profile_pic' => 'image|nullable|max:1999',
+        ]);
+
+        User::create([
+            'type' => $request->type,
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'dob' => $request->dob,
+            'address' => $request->address,
+            'nid' => $request->nid,
+            'password' => bcrypt($request->password),
+            'profile_pic' => isset($request->profile_pic) ? $request->profile_pic->store('profile_pics', 'public') : null
+        ]);
+
+        return redirect()->route('HQProfile');
     }
 }

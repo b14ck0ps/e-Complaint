@@ -2,11 +2,12 @@
     <a class="navbar-brand text-white font-weight-bold">e-Complaint</a>
     <div>
         @auth
-            <a class="mr-5" href="/home">Home</a>
             @if (Auth::user()->type == 'ADMIN')
+                <a class="mr-5" href="/hq/home">Home</a>
                 <a class="mr-5" href="/register/newuser">Add New User</a>
             @endif
             @if (Auth::user()->type == 'VICTIM')
+                <a class="mr-5" href="/home">Home</a>
                 <a href="/complain">File Complaint</a>
             @endif
         @endauth

@@ -51,4 +51,5 @@ Route::group(['middleware' => ['auth']], function () {
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/hq/home', [ProfileController::class, 'HQProfile'])->name('HQProfile');
     Route::get('/register/newuser', [HQRegController::class, 'regNewUser'])->name('new.user');
+    Route::post('/register/newuser', [HQRegController::class, 'newUser']);
 });
