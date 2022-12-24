@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('content')
-    <div class="d-flex justify-content-center " style="margin-top: 10vh">
+    <div class="d-flex justify-content-center mb-3" style="margin-top: 70px">
+        <div class="card card-title px-5 py-2 h2">Cyber Police Dashboard</div>
+    </div>
+    <div class="d-flex justify-content-center ">
         <div class="d-flex">
             {{-- left side --}}
             <div class="card mr-2" style="width: 25rem;">

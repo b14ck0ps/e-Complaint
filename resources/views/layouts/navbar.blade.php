@@ -5,10 +5,13 @@
             @if (Auth::user()->type == 'ADMIN')
                 <a class="mr-5" href="/hq/home">Home</a>
                 <a class="mr-5" href="/register/newuser">Add New User</a>
-                <a class="mr-5" href="/alluser">All Users</a>
+                <a class="mr-5" href="/allcomplains">All Complains</a>
             @endif
             @if (Auth::user()->type == 'CYBER_POLICE')
                 <a class="mr-5" href="/cyberpolice/home">Home</a>
+            @endif
+            @if (Auth::user()->type == 'POLICE')
+                <a class="mr-5" href="/police/home">Home</a>
             @endif
             @if (Auth::user()->type == 'VICTIM')
                 <a class="mr-5" href="/home">Home</a>
