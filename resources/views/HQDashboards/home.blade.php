@@ -31,7 +31,7 @@
             {{-- right side --}}
             <div class="card" style="width: 60rem">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h4 class="p-4">All Users</h4>
+                    <h4 class="p-4">All Officals</h4>
                     <a class="btn btn-primary mr-5 " href="/register/newuser" style="max-height: 50px">NEW</a>
                 </div>
                 <div class="card-body">
@@ -42,7 +42,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Type</th>
+                                    <th scope="col">Position</th>
                                     <th scope="col">Account Created</th>
                                 </tr>
                             </thead>

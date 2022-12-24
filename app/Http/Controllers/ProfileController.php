@@ -18,7 +18,7 @@ class ProfileController extends Controller
     public function HQProfile()
     {
         $user = User::find(auth()->user()->id);
-        $users = User::all();
+        $users = User::where('type', '!=', 'VICTIM')->get();
         return view('HQDashboards.home', compact('user', 'users'));
     }
     public function allComplains()
