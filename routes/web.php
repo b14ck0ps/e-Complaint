@@ -49,7 +49,7 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 // * AUTH ROUTES for HQ
-Route::group(['middleware' => ['auth', 'admin']], function () {
+Route::group(['middleware' => ['auth', 'HQ']], function () {
     Route::get('/hq/home', [ProfileController::class, 'HQProfile'])->name('HQProfile');
     Route::get('/allcomplains', [ProfileController::class, 'allComplains'])->name('allcomplains');
     Route::get('/register/newuser', [HQRegController::class, 'regNewUser'])->name('new.user');

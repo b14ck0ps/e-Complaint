@@ -22,7 +22,7 @@ class LoginController extends Controller
         if (!auth()->attempt($request->only('email', 'password'), $request->remember)) {
             return back()->with('status', 'Invalid login details');
         }
-        if (auth()->user()->type == 'ADMIN') {
+        if (auth()->user()->type == 'HQ') {
             return redirect()->route('HQProfile');
         }
         if (auth()->user()->type == 'CYBER_POLICE') {

@@ -26,7 +26,7 @@ class HQRegController extends Controller
         ]);
 
         User::create([
-            'type' => 'ADMIN',
+            'type' => 'HQ',
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,

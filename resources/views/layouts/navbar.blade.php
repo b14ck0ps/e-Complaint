@@ -2,7 +2,7 @@
     <a class="navbar-brand text-white font-weight-bold">e-Complaint</a>
     <div>
         @auth
-            @if (Auth::user()->type == 'ADMIN')
+            @if (Auth::user()->type == 'HQ')
                 <a class="mr-5" href="/hq/home">Home</a>
                 <a class="mr-5" href="/register/newuser">Add New User</a>
                 <a class="mr-5" href="/allcomplains">Anonymous Complains</a>
