@@ -27,7 +27,7 @@
             </div>
             {{-- right side --}}
             <div class="card" style="width: 60rem">
-                <h4 class="p-4">All Users</h4>
+                <h4 class="p-4">All Complains</h4>
                 <div class="card-body">
                     <p class="card-text">
                     <div class="table-responsive">
@@ -35,18 +35,23 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Type</th>
-                                    <th scope="col">Account Created</th>
+                                    <th scope="col">Complaint type</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Handle By</th>
+                                    <th scope="col">Date</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $user)
+                                @foreach ($complains as $complain)
                                     <tr>
-                                        <th scope="row">{{ $user->id }}</th>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->type }}</td>
-                                        <td>{{ $user->created_at }}</td>
+                                        <th scope="row">{{ $complain->id }}</th>
+                                        <td><a href="/complain/{{ $complain->id }}">{{ $complain->complaint_type }}</a>
+                                        </td>
+                                        <td>
+                                            <span class="badge-pill badge-secondary">{{ $complain->status }}</span>
+                                        </td>
+                                        <td>{{ $complain->handle_by ?? '...' }}</td>
+                                        <td>{{ $complain->created_at }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
