@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comments;
 use App\Models\Complains;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -15,11 +16,12 @@ class ComplainsController extends Controller
     public function details($id)
     {
         $complain = Complains::find($id);
+        $comments = Comments::where('complain_id', $id)->paginate(2);
         if (auth()->user()->type == 'HQ') {
             $agents = User::where('type', 'SPECIAL_AGENT')->get();
-            return view('VictimDashboards.complainDetails', compact('complain', 'agents'));
+            return view('VictimDashboards.complainDetails', compact('complain', 'agents', 'comments'));
         }
-        return view('VictimDashboards.complainDetails', compact('complain'));
+        return view('VictimDashboards.complainDetails', compact('complain', 'comments'));
     }
     public function store(Request $request)
     {

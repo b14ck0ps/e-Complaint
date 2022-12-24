@@ -31,6 +31,9 @@ class LoginController extends Controller
         if (auth()->user()->type == 'POLICE') {
             return redirect()->route('PoliceHome');
         }
+        if (auth()->user()->type == 'SPECIAL_AGENT') {
+            return redirect()->route('agentHome');
+        }
         return redirect()->route('VictimProfile');
     }
 }

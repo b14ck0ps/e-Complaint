@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\HQRegController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegistrationController;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\ComplainsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -67,4 +68,9 @@ Route::group(['middleware' => ['auth',/* 'cyberpolice'*/]], function () {
 Route::group(['middleware' => ['auth',/* 'cyberpolice'*/]], function () {
     Route::get('/police/home', [ProfileController::class, 'PoliceProfile'])->name('PoliceHome');
     Route::post('/assignTask', [ComplainsController::class, 'assignTo']);
+});
+// * SPECIAL_AGENT routes
+Route::group(['middleware' => ['auth',/* 'cyberpolice'*/]], function () {
+    Route::get('/agent', [ProfileController::class, 'agentProfile'])->name('agentHome');
+    Route::post('/comment', [CommentsController::class, 'store']);
 });

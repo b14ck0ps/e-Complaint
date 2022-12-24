@@ -42,4 +42,12 @@ class ProfileController extends Controller
         $complains = Complains::where('handle_by', 'Police Station')->get();
         return view('PoliceHQ.home', compact('user', 'complains'));
     }
+
+    //agent profile
+    public function agentProfile()
+    {
+        $user = User::find(auth()->user()->id);
+        $complains = Complains::where('investigator', auth()->user()->name)->get();
+        return view('InvestigatorsDashboards.home', compact('user', 'complains'));
+    }
 }

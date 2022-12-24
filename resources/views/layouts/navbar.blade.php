@@ -13,6 +13,9 @@
             @if (Auth::user()->type == 'POLICE')
                 <a class="mr-5" href="/police/home">Home</a>
             @endif
+            @if (Auth::user()->type == 'SPECIAL_AGENT')
+                <a class="mr-5" href="/agent">Home</a>
+            @endif
             @if (Auth::user()->type == 'VICTIM')
                 <a class="mr-5" href="/home">Home</a>
                 <a href="/complain">File Complaint</a>
