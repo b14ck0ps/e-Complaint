@@ -90,7 +90,7 @@
                     </form>
                 </div>
             @endif
-            @if (auth()->user()->type == 'SPECIAL_AGENT')
+            @if (auth()->user()->type == 'SPECIAL_AGENT' || auth()->user()->type == 'QR_AGENT')
                 <div style="max-width: 300px">
                     <form action="/comment" method="POST">
                         @csrf

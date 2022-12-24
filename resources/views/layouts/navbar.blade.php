@@ -16,6 +16,9 @@
             @if (Auth::user()->type == 'SPECIAL_AGENT')
                 <a class="mr-5" href="/agent">Home</a>
             @endif
+            @if (Auth::user()->type == 'QR_AGENT')
+                <a class="mr-5" href="/qr-agent">Home</a>
+            @endif
             @if (Auth::user()->type == 'VICTIM')
                 <a class="mr-5" href="/home">Home</a>
                 <a href="/complain">File Complaint</a>

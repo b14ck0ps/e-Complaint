@@ -24,6 +24,7 @@
                     <select class="form-control" name="type" id="">
                         <option value="POLICE">Police</option>
                         <option value="CYBER_POLICE">Cyber Police</option>
+                        <option value="QR_AGENT">QR Agent</option>
                         <option value="SPECIAL_AGENT">Spacial Agent</option>
                     </select>
                     @error('type')

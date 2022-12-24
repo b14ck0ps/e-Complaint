@@ -74,3 +74,8 @@ Route::group(['middleware' => ['auth',/* 'cyberpolice'*/]], function () {
     Route::get('/agent', [ProfileController::class, 'agentProfile'])->name('agentHome');
     Route::post('/comment', [CommentsController::class, 'store']);
 });
+// * QR_AGENT routes
+Route::group(['middleware' => ['auth',/* 'cyberpolice'*/]], function () {
+    Route::get('/qr-agent', [ProfileController::class, 'qrProfile'])->name('qrHome');
+    Route::post('/comment', [CommentsController::class, 'store']);
+});

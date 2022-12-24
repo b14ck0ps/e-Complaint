@@ -48,6 +48,13 @@ class ProfileController extends Controller
     {
         $user = User::find(auth()->user()->id);
         $complains = Complains::where('investigator', auth()->user()->name)->paginate(9);
-        return view('InvestigatorsDashboards.home', compact('user', 'complains'));
+        return view('InvestigatorsDashboards.agent', compact('user', 'complains'));
+    }
+    //QR agent profile
+    public function qrProfile()
+    {
+        $user = User::find(auth()->user()->id);
+        $complains = Complains::where('investigator', auth()->user()->name)->paginate(9);
+        return view('InvestigatorsDashboards.QRAgent', compact('user', 'complains'));
     }
 }

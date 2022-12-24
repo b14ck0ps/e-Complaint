@@ -34,6 +34,9 @@ class LoginController extends Controller
         if (auth()->user()->type == 'SPECIAL_AGENT') {
             return redirect()->route('agentHome');
         }
+        if (auth()->user()->type == 'QR_AGENT') {
+            return redirect()->route('qrHome');
+        }
         return redirect()->route('VictimProfile');
     }
 }
