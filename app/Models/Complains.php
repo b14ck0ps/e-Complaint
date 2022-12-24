@@ -15,6 +15,8 @@ class Complains extends Model
         'status',
         'anonymous',
         'user_id',
+        'handle_by',
+        'assign_to',
         'attachment1',
     ];
 }

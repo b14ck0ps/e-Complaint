@@ -34,4 +34,15 @@ class ComplainsController extends Controller
 
         return redirect()->to('/home')->with('status', 'Complaint has been submitted successfully');
     }
+
+    public function sendComplain(Request $request)
+    {
+        $this->validate($request, [
+            'handle_by' => 'required'
+        ]);
+        $complain = Complains::find($request->id);
+        $complain->handle_by = $request->handle_by;
+        $complain->save();
+        return redirect()->route('C_PoliceProfile')->with('status', 'Complain has been sent');
+    }
 }

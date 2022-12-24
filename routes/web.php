@@ -54,3 +54,9 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/register/newuser', [HQRegController::class, 'regNewUser'])->name('new.user');
     Route::post('/register/newuser', [HQRegController::class, 'newUser']);
 });
+
+// * AUTH ROUTES for Cyber Police
+Route::group(['middleware' => ['auth',/* 'cyberpolice'*/]], function () {
+    Route::get('/cyberpolice/home', [ProfileController::class, 'C_PoliceProfile'])->name('C_PoliceProfile');
+    Route::post('/sendcomplain', [ComplainsController::class, 'sendComplain'])->name('send.complain');
+});

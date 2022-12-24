@@ -25,6 +25,9 @@ class LoginController extends Controller
         if (auth()->user()->type == 'ADMIN') {
             return redirect()->route('HQProfile');
         }
+        if (auth()->user()->type == 'CYBER_POLICE') {
+            return redirect()->route('C_PoliceProfile');
+        }
         return redirect()->route('VictimProfile');
     }
 }

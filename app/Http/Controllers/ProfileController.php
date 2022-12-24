@@ -27,4 +27,11 @@ class ProfileController extends Controller
         $user  = User::find(auth()->user()->id);
         return view('HQDashboards.allUsers', compact('users', 'user'));
     }
+    //cyber police profile
+    public function C_PoliceProfile()
+    {
+        $user = User::find(auth()->user()->id);
+        $complains = Complains::all();
+        return view('CyberPoliceDashboards.home', compact('user', 'complains'));
+    }
 }
