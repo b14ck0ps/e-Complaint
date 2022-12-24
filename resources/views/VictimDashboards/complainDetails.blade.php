@@ -19,7 +19,7 @@
                 </div>
             </div>
 
-            <a href="/home">Back</a>
+            <a href="{{ url()->previous() }}">Back</a>
         </div>
     </div>
 @endsection
