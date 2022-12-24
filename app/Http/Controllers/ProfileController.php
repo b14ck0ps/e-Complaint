@@ -14,4 +14,11 @@ class ProfileController extends Controller
         $complains = Complains::where('user_id', auth()->user()->id)->get();
         return view('VictimDashboards.home', compact('user', 'complains'));
     }
+
+    public function HQProfile()
+    {
+        $user = User::find(auth()->user()->id);
+        $complains = Complains::all();
+        return view('HQDashboards.home', compact('user', 'complains'));
+    }
 }

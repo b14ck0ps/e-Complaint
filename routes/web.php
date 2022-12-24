@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\HQRegController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\ComplainsController;
@@ -26,11 +27,13 @@ Route::group(['middleware' => ['guest']], function () {
     //! registration route
     Route::get('/register', [RegistrationController::class, 'index'])->name('register');
     Route::post('/register', [RegistrationController::class, 'store']);
+    Route::get('/hq/register', [HQRegController::class, 'index'])->name('hq.registration');
+    Route::post('/hq/register', [HQRegController::class, 'store']);
 });
 
 // * AUTH ROUTES for Victim
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/home', [ProfileController::class, 'VictimProfile'])->name('home');
+    Route::get('/home', [ProfileController::class, 'VictimProfile'])->name('VictimProfile');
 
     // * COMPLAIN ROUTE
     Route::get('/complain', [ComplainsController::class, 'index'])->name('complaint');
@@ -42,4 +45,10 @@ Route::group(['middleware' => ['auth']], function () {
         auth()->logout();
         return redirect()->route('login');
     });
+});
+
+// * AUTH ROUTES for HQ
+Route::group(['middleware' => ['auth', 'admin']], function () {
+    Route::get('/hq/home', [ProfileController::class, 'HQProfile'])->name('HQProfile');
+    Route::get('/register/newuser', [HQRegController::class, 'regNewUser'])->name('new.user');
 });

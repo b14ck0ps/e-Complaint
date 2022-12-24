@@ -3,7 +3,12 @@
     <div>
         @auth
             <a class="mr-5" href="/home">Home</a>
-            <a href="/complain">File Complaint</a>
+            @if (Auth::user()->type == 'ADMIN')
+                <a class="mr-5" href="/register/newuser">Add New User</a>
+            @endif
+            @if (Auth::user()->type == 'VICTIM')
+                <a href="/complain">File Complaint</a>
+            @endif
         @endauth
     </div>
     <div>
