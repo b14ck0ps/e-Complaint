@@ -40,7 +40,7 @@ class ProfileController extends Controller
     {
         $user = User::find(auth()->user()->id);
         $complains = Complains::where('handle_by', 'Police Station')->paginate(9);
-        return view('PoliceHQ.home', compact('user', 'complains'));
+        return view('PoliceStation.home', compact('user', 'complains'));
     }
 
     //agent profile
