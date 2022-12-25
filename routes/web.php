@@ -42,12 +42,6 @@ Route::group(['middleware' => ['auth', 'VICTIM']], function () {
     Route::get('/complain', [ComplainsController::class, 'index'])->name('complaint');
     Route::get('/complain/{id}', [ComplainsController::class, 'details'])->name('complaint.details');
     Route::post('/complain', [ComplainsController::class, 'store']);
-
-    // * LOGOUT ROUTE
-    Route::get('/logout', function () {
-        auth()->logout();
-        return redirect()->route('login');
-    });
 });
 
 // * AUTH ROUTES for HQ
@@ -83,5 +77,12 @@ Route::group(['middleware' => ['auth', 'QR_Agent']], function () {
     Route::post('/case/complete', [ComplainsController::class, 'complete']);
 });
 
-Route::get('/edit', [ProfileUpdateController::class, 'index'])->name('edit')->middleware('auth');
-Route::post('/edit', [ProfileUpdateController::class, 'update'])->middleware('auth');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/edit', [ProfileUpdateController::class, 'index'])->name('edit');
+    Route::post('/edit', [ProfileUpdateController::class, 'update']);
+    // * LOGOUT ROUTE
+    Route::get('/logout', function () {
+        auth()->logout();
+        return redirect()->route('login');
+    });
+});
