@@ -40,7 +40,6 @@ Route::group(['middleware' => ['auth', 'VICTIM']], function () {
 
     // * COMPLAIN ROUTE
     Route::get('/complain', [ComplainsController::class, 'index'])->name('complaint');
-    Route::get('/complain/{id}', [ComplainsController::class, 'details'])->name('complaint.details');
     Route::post('/complain', [ComplainsController::class, 'store']);
 });
 
@@ -67,17 +66,14 @@ Route::group(['middleware' => ['auth', 'Police']], function () {
 // * SPECIAL_AGENT routes
 Route::group(['middleware' => ['auth', 'SP_Agent']], function () {
     Route::get('/agent', [ProfileController::class, 'agentProfile'])->name('agentHome');
-    Route::post('/comment', [CommentsController::class, 'store']);
-    Route::post('/case/complete', [ComplainsController::class, 'complete']);
 });
 // * QR_AGENT routes
 Route::group(['middleware' => ['auth', 'QR_Agent']], function () {
     Route::get('/qr-agent', [ProfileController::class, 'qrProfile'])->name('qrHome');
-    Route::post('/comment', [CommentsController::class, 'store']);
-    Route::post('/case/complete', [ComplainsController::class, 'complete']);
 });
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('/complain/{id}', [ComplainsController::class, 'details'])->name('complaint.details');
     Route::get('/edit', [ProfileUpdateController::class, 'index'])->name('edit');
     Route::post('/edit', [ProfileUpdateController::class, 'update']);
     // * LOGOUT ROUTE
@@ -85,4 +81,8 @@ Route::group(['middleware' => ['auth']], function () {
         auth()->logout();
         return redirect()->route('login');
     });
+});
+Route::group(['middleware' => ['auth', 'investigator']], function () {
+    Route::post('/comment', [CommentsController::class, 'store']);
+    Route::post('/case/complete', [ComplainsController::class, 'complete']);
 });

@@ -70,5 +70,6 @@ class Kernel extends HttpKernel
         'QR_Agent' => \App\Http\Middleware\QR_Agent::class,
         'VICTIM' => \App\Http\Middleware\victim::class,
         'noAuth' => \App\Http\Middleware\noAuth::class,
+        'investigator' => \App\Http\Middleware\investigator::class,
     ];
 }
