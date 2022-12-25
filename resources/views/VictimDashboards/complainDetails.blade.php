@@ -29,6 +29,7 @@
                         <p><strong>Case Updates:</strong></p>
                         @foreach ($comments as $comment)
                             <div class="card p-2 mb-1" style="width: 800px">
+                                <p><strong>Invesigator: </strong>{{ $comment->investigaor }}</p>
                                 <p><strong>Details: </strong>{{ $comment->comment }}</p>
                                 <p class="text-right">{{ date('M j, Y, g:i a', strtotime($comment->created_at)) }}</p>
                             </div>
@@ -62,13 +63,18 @@
                     <form action="/assignTask" method="POST">
                         @csrf
                         <p>Assign Task TO</p>
-                        <div class="form-group d-flex justify-content-center align-items-center">
+                        <div class="form-group justify-content-center align-items-center">
                             <select class="form-control" name="assign_to">
                                 <option value="Quick Reactoin Force">Quick Reactoin Force</option>
                                 <option value="Quick Reaction Team">Quick Reaction Team</option>
                             </select>
+                            <select class="form-control mt-2" name="investigator">
+                                @foreach ($agents as $agent)
+                                    <option value="{{ $agent->name }}">{{ $agent->name }}</option>
+                                @endforeach
+                            </select>
                             <input type="hidden" name="id" value="{{ $complain->id }}">
-                            <button type="submit" class="btn btn-primary ml-2">Assign</button>
+                            <button type="submit" class="btn btn-primary mt-2">Assign</button>
                         </div>
                     </form>
                 </div>

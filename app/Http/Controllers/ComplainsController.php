@@ -17,8 +17,17 @@ class ComplainsController extends Controller
     {
         $complain = Complains::find($id);
         $comments = Comments::where('complain_id', $id)->paginate(2);
+        //map investigaor name with comments
+        $comments->map(function ($comment) {
+            $comment->investigaor = User::find($comment->user_id)->name;
+            return $comment;
+        });
         if (auth()->user()->type == 'HQ') {
             $agents = User::where('type', 'SPECIAL_AGENT')->get();
+            return view('VictimDashboards.complainDetails', compact('complain', 'agents', 'comments'));
+        }
+        if (auth()->user()->type == 'POLICE') {
+            $agents = User::where('type', 'QR_AGENT')->get();
             return view('VictimDashboards.complainDetails', compact('complain', 'agents', 'comments'));
         }
         return view('VictimDashboards.complainDetails', compact('complain', 'comments'));
@@ -55,11 +64,13 @@ class ComplainsController extends Controller
     public function assignTo(Request $request)
     {
         $this->validate($request, [
-            'assign_to' => 'required'
+            'assign_to' => 'required',
+            'investigator' => 'required'
         ]);
         $complain = Complains::find($request->id);
         $complain->assign_to = $request->assign_to;
-        $complain->status = 'Assigned';
+        $complain->investigator = $request->investigator;
+        $complain->status = 'Investigating';
         $complain->save();
         return redirect()->route('PoliceHome')->with('status', 'Complain is processing');
     }
