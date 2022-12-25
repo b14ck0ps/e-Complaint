@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\ComplainsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProfileUpdateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -81,3 +82,6 @@ Route::group(['middleware' => ['auth', 'QR_Agent']], function () {
     Route::post('/comment', [CommentsController::class, 'store']);
     Route::post('/case/complete', [ComplainsController::class, 'complete']);
 });
+
+Route::get('/edit', [ProfileUpdateController::class, 'index'])->name('edit')->middleware('auth');
+Route::post('/edit', [ProfileUpdateController::class, 'update'])->middleware('auth');
