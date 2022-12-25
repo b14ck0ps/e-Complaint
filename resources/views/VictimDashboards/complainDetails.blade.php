@@ -102,14 +102,22 @@
                         @csrf
                         <p>Updates about this case</p>
                         <div class="form-group">
-                            <textarea name="comment" id="" cols="60" rows="3"></textarea>
+                            <textarea name="comment" id="" cols="37" rows="3"></textarea>
                             <input type="hidden" name="complain_id" value="{{ $complain->id }}">
                             <button type="submit" class="btn btn-primary">Send</button>
                         </div>
                     </form>
                 </div>
             @endif
-            <a href="{{ url()->previous() }}">Back</a>
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="{{ url()->previous() }}">Back</a>
+                <form action="/case/complete" method="POST">
+                    @csrf
+                    <input type="hidden" name="id" value="{{ $complain->id }}">
+                    <button type="submit" class="btn btn-success" href="">Complete case</button>
+                </form>
+
+            </div>
         </div>
     </div>
 @endsection

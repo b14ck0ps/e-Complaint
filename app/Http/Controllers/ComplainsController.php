@@ -85,4 +85,11 @@ class ComplainsController extends Controller
         $complain->save();
         return redirect()->route('HQProfile')->with('status', 'Complain has Assigned');
     }
+    public function complete(Request $request)
+    {
+        $complain = Complains::find($request->id);
+        $complain->status = 'Complete';
+        $complain->save();
+        return redirect()->to('/')->with('status', 'Complain has Assigned');
+    }
 }
