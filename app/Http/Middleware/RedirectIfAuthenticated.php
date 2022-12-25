@@ -23,7 +23,22 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                if (auth()->user()->type == 'HQ') {
+                    return redirect()->route('HQProfile');
+                }
+                if (auth()->user()->type == 'CYBER_POLICE') {
+                    return redirect()->route('C_PoliceProfile');
+                }
+                if (auth()->user()->type == 'POLICE') {
+                    return redirect()->route('PoliceHome');
+                }
+                if (auth()->user()->type == 'SPECIAL_AGENT') {
+                    return redirect()->route('agentHome');
+                }
+                if (auth()->user()->type == 'QR_AGENT') {
+                    return redirect()->route('qrHome');
+                }
+                // return redirect(RouteServiceProvider::HOME);
             }
         }
 
