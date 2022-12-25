@@ -24,6 +24,7 @@ return new class extends Migration
             //user table foreign key
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->string('investigator')->nullable();
             $table->string('attachment1')->nullable();
             $table->timestamps();
         });
