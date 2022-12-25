@@ -33,7 +33,7 @@ Route::group(['middleware' => ['guest']], function () {
     Route::post('/hq/register', [HQRegController::class, 'store']);
 });
 
-// * AUTH ROUTES for Victim
+// * ROUTES for Victim
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [ProfileController::class, 'VictimProfile'])->name('VictimProfile');
 
@@ -58,13 +58,13 @@ Route::group(['middleware' => ['auth', 'HQ']], function () {
     Route::post('/assignAgent', [ComplainsController::class, 'assignAgent']);
 });
 
-// * AUTH ROUTES for Cyber Police
+// *ROUTES for Cyber Police
 Route::group(['middleware' => ['auth',/* 'cyberpolice'*/]], function () {
     Route::get('/cyberpolice/home', [ProfileController::class, 'C_PoliceProfile'])->name('C_PoliceProfile');
     Route::post('/sendcomplain', [ComplainsController::class, 'sendComplain'])->name('send.complain');
 });
 
-// * AUTH ROUTES for Police
+// *ROUTES for Police
 Route::group(['middleware' => ['auth',/* 'cyberpolice'*/]], function () {
     Route::get('/police/home', [ProfileController::class, 'PoliceProfile'])->name('PoliceHome');
     Route::post('/assignTask', [ComplainsController::class, 'assignTo']);
