@@ -19,11 +19,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//grouping routes midleware
-Route::group(['middleware' => ['guest']], function () {
+
+Route::group(['middleware' => ['noAuth']], function () {
     //! login route
     Route::get('/', [LoginController::class, 'index'])->name('login');
-    Route::get('/login', [LoginController::class, 'index'])->name('login');
+    Route::get('/login', [LoginController::class, 'index']);
     Route::post('/login', [LoginController::class, 'login']);
 
     //! registration route
@@ -34,7 +34,7 @@ Route::group(['middleware' => ['guest']], function () {
 });
 
 // * ROUTES for Victim
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'VICTIM']], function () {
     Route::get('/home', [ProfileController::class, 'VictimProfile'])->name('VictimProfile');
 
     // * COMPLAIN ROUTE
@@ -59,24 +59,24 @@ Route::group(['middleware' => ['auth', 'HQ']], function () {
 });
 
 // *ROUTES for Cyber Police
-Route::group(['middleware' => ['auth',/* 'cyberpolice'*/]], function () {
+Route::group(['middleware' => ['auth', 'CyberPolice']], function () {
     Route::get('/cyberpolice/home', [ProfileController::class, 'C_PoliceProfile'])->name('C_PoliceProfile');
     Route::post('/sendcomplain', [ComplainsController::class, 'sendComplain'])->name('send.complain');
 });
 
 // *ROUTES for Police
-Route::group(['middleware' => ['auth',/* 'cyberpolice'*/]], function () {
+Route::group(['middleware' => ['auth', 'Police']], function () {
     Route::get('/police/home', [ProfileController::class, 'PoliceProfile'])->name('PoliceHome');
     Route::post('/assignTask', [ComplainsController::class, 'assignTo']);
 });
 // * SPECIAL_AGENT routes
-Route::group(['middleware' => ['auth',/* 'cyberpolice'*/]], function () {
+Route::group(['middleware' => ['auth', 'SP_Agent']], function () {
     Route::get('/agent', [ProfileController::class, 'agentProfile'])->name('agentHome');
     Route::post('/comment', [CommentsController::class, 'store']);
     Route::post('/case/complete', [ComplainsController::class, 'complete']);
 });
 // * QR_AGENT routes
-Route::group(['middleware' => ['auth',/* 'cyberpolice'*/]], function () {
+Route::group(['middleware' => ['auth', 'QR_Agent']], function () {
     Route::get('/qr-agent', [ProfileController::class, 'qrProfile'])->name('qrHome');
     Route::post('/comment', [CommentsController::class, 'store']);
     Route::post('/case/complete', [ComplainsController::class, 'complete']);

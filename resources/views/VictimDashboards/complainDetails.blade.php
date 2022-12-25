@@ -111,12 +111,13 @@
             @endif
             <div class="d-flex justify-content-between align-items-center">
                 <a href="{{ url()->previous() }}">Back</a>
-                <form action="/case/complete" method="POST">
-                    @csrf
-                    <input type="hidden" name="id" value="{{ $complain->id }}">
-                    <button type="submit" class="btn btn-success" href="">Complete case</button>
-                </form>
-
+                @if (auth()->user()->type == 'SPECIAL_AGENT' || auth()->user()->type == 'QR_AGENT')
+                    <form action="/case/complete" method="POST">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $complain->id }}">
+                        <button type="submit" class="btn btn-success" href="">Complete case</button>
+                    </form>
+                @endif
             </div>
         </div>
     </div>

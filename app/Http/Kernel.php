@@ -64,5 +64,11 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'HQ' => \App\Http\Middleware\HQ::class,
+        'CyberPolice' => \App\Http\Middleware\CyberPolice::class,
+        'Police' => \App\Http\Middleware\Police::class,
+        'SP_Agent' => \App\Http\Middleware\SP_Agent::class,
+        'QR_Agent' => \App\Http\Middleware\QR_Agent::class,
+        'VICTIM' => \App\Http\Middleware\victim::class,
+        'noAuth' => \App\Http\Middleware\noAuth::class,
     ];
 }
