@@ -32,6 +32,9 @@ class noAuth
             if (auth()->user()->type == 'QR_AGENT') {
                 return redirect()->route('qrHome');
             }
+            if (auth()->user()->type == 'VICTIM') {
+                return redirect()->route('VictimProfile');
+            }
         }
         return $next($request);
     }

@@ -16,7 +16,7 @@ class victim
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->role != 'VICTIM') {
+        if (auth()->user()->type != 'VICTIM') {
             return redirect()->route('login');
         }
         return $next($request);

@@ -25,6 +25,9 @@ class LoginController extends Controller
         if (auth()->user()->type == 'HQ') {
             return redirect()->route('HQProfile');
         }
+        if (auth()->user()->type == 'VICTIM') {
+            return redirect()->route('VictimProfile');
+        }
         if (auth()->user()->type == 'CYBER_POLICE') {
             return redirect()->route('C_PoliceProfile');
         }
@@ -37,6 +40,5 @@ class LoginController extends Controller
         if (auth()->user()->type == 'QR_AGENT') {
             return redirect()->route('qrHome');
         }
-        return redirect()->route('VictimProfile');
     }
 }
