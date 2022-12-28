@@ -17,8 +17,8 @@ class RegistrationController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255',
-            'phone' => 'required|numeric',
+            'email' => 'required|email|max:255| unique:users',
+            'phone' => 'required|numeric| unique:users',
             'dob' => 'required|date',
             'address' => 'required|max:255',
             'nid' => 'required|numeric',
