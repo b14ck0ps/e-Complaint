@@ -16,7 +16,7 @@ class ComplainsController extends Controller
     public function details($id)
     {
         $complain = Complains::find($id);
-        $comments = Comments::where('complain_id', $id)->paginate(2);
+        $comments = Comments::where('complain_id', $id)->latest()->paginate(2);
         //map investigaor name with comments
         $comments->map(function ($comment) {
             $comment->investigaor = User::find($comment->user_id)->name;
