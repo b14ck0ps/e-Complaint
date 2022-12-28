@@ -30,7 +30,7 @@ Route::group(['middleware' => ['noAuth']], function () {
     //! registration route
     Route::get('/register', [RegistrationController::class, 'index'])->name('register');
     Route::post('/register', [RegistrationController::class, 'store']);
-    Route::get('/hq/register', [HQRegController::class, 'index'])->name('hq.registration');
+    Route::get('/admin', [HQRegController::class, 'index'])->name('hq.registration');
     Route::post('/hq/register', [HQRegController::class, 'store']);
 });
 
