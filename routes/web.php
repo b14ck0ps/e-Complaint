@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\archiveController;
 use App\Http\Controllers\Auth\HQRegController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegistrationController;
@@ -50,6 +51,7 @@ Route::group(['middleware' => ['auth', 'HQ']], function () {
     Route::get('/register/newuser', [HQRegController::class, 'regNewUser'])->name('new.user');
     Route::post('/register/newuser', [HQRegController::class, 'newUser']);
     Route::post('/assignAgent', [ComplainsController::class, 'assignAgent']);
+    Route::get('/archive', [archiveController::class, 'index'])->name('archive');
 });
 
 // *ROUTES for Cyber Police

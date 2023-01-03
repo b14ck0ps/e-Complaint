@@ -6,6 +6,7 @@
                 <a class="mr-5" href="/hq/home">Home</a>
                 <a class="mr-5" href="/register/newuser">Add New User</a>
                 <a class="mr-5" href="/allcomplains">Anonymous Complains</a>
+                <a class="mr-5" href="/archive">Archived Case</a>
             @endif
             @if (Auth::user()->type == 'CYBER_POLICE')
                 <a class="mr-5" href="/cyberpolice/home">Home</a>

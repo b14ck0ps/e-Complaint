@@ -79,7 +79,7 @@
                     </form>
                 </div>
             @endif
-            @if (auth()->user()->type == 'HQ')
+            @if (auth()->user()->type == 'HQ' && $complain->status != 'Complete')
                 <div style="max-width: 300px">
                     <form action="/assignAgent" method="POST">
                         @csrf
