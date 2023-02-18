@@ -6,6 +6,9 @@
                 <div class="card-header">
                     <h4 class="card-title text-center">Archive</h4>
                 </div>
+                <div class="canv">
+                    <canvas id="graph"></canvas>
+                </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table">
@@ -72,3 +75,12 @@
         </div>
     </div>
 @endsection
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="module" src="{{ URL::asset('js/Graph.js') }}"></script>
+<style>
+    .canv {
+        width: 100vh;
+        height: 400px;
+        margin: 10px auto;
+    }
+</style>

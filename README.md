@@ -11,3 +11,6 @@ Then open PowerShell and run
     php artisan serve
 
 \*If ask to create database when migrating, type `yes`
+
+Add Crime DataSet to This File: `./e-Complaint/public/js/data/Data.js`
+View Graph at `http://127.0.0.1:8000/archive`
